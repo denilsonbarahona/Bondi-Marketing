@@ -3,14 +3,20 @@ import type { Config } from "tailwindcss";
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        agbalumo: ["Agbalumo", "sans-serif"],
+        dmSans: ["DM Sans", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
+      backgroundImage: {
+        hero: "url('/hero.webp')",
+        modal: "url('/modal.webp')",
       },
     },
   },
