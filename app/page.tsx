@@ -37,7 +37,7 @@ export default function Home() {
         setIsLoading(false);
       }
     },
-    [setEmail, emailRef, ref]
+    [emailRef, ref]
   );
 
   return (
@@ -66,7 +66,7 @@ export default function Home() {
           <h3 className="font-poppins text-2xl my-2">
             Register your email to get exclusive early access to Bondi. We'll
             notify you as soon as the platform is ready, so you can start
-            buying, selling, and renting sustainable fashion.
+            buying, selling, or renting sustainable fashion.
           </h3>
 
           <form onSubmit={handleSubmitForm} className="grid mt-5 gap-4">
@@ -118,8 +118,9 @@ export default function Home() {
               </h1>
               <p className="text-center max-w-[619px] mx-auto font-dmSans text-[#565E58] font-medium text-[16px] md:text-[21px]">
                 Bondi is a sustainable ecommerce platform focused on the
-                circular economy. Our mission is to empower sellers and buyers
-                to extend the life of clothes and reduce textile waste
+                circular economy. Our mission is to empower buyers, sellers, and
+                renters to extend the life of clothes, reduce textile waste, and
+                create a greener future.
               </p>
               <button
                 onClick={handleOpenModal}
@@ -135,13 +136,17 @@ export default function Home() {
             <div className="pt-[79px] md:py-[119px] pb-[40px] gap-14 flex flex-col justify-between md:flex-row items-center">
               <div className="md:max-w-[700px]">
                 <h2 className="font-agbalumo text-[#1E2023] text-[32px]">
-                  Discover the Benefits of Sustainable Selling and Buying
+                  Discover the Benefits of Sustainable Selling, Buying, and
+                  Renting
                 </h2>
                 <p className="font-dmSans text-[#76706D] mt-5">
-                  As a sustainable ecommerce platform, Bondi offers a range of
-                  benefits for both sellers and buyers. For sellers, we provide
-                  a platform to extend the life of their clothes, reaching a
-                  wider audience and contributing to a more sustainable future
+                  As a sustainable ecommerce platform, Bondi empowers sellers,
+                  buyers, and renters to make a positive impact. For sellers,
+                  Bondi provides an easy way to extend the life of their
+                  clothes, reach a global audience, and contribute to a more
+                  sustainable future. For buyers and renters, Bondi offers
+                  access to unique, affordable fashion while reducing textile
+                  waste and supporting the circular economy.
                 </p>
                 <button
                   onClick={handleOpenModal}
@@ -173,7 +178,8 @@ export default function Home() {
                   </h3>
                   <p className="text-[#505A53] font-dmSans">
                     Bondi's mission is to create a more sustainable future by
-                    empowering sellers and buyers to extend the life of clothes
+                    empowering sellers, buyers, and renters to extend the life
+                    of clothes.
                   </p>
                 </div>
                 <div className="px-5 py-10 bg-[#F2E0C2] flex-1 md:min-w-[313px]">
@@ -181,29 +187,29 @@ export default function Home() {
                     Discover New Possibilities
                   </h3>
                   <p className="text-[#756859] font-dmSans">
-                    Bondi's sustainable ecommerce platform connects sellers and
-                    buyers, enabling them to extend the life of clothes and
-                    reduce textile waste
+                    Bondi connects people globally, enabling them to buy, sell,
+                    or rent clothes while reducing textile waste and supporting
+                    sustainability.
                   </p>
                 </div>
                 <div className="px-5 py-10 bg-[#F6D3C4] flex-1 md:min-w-[313px]">
                   <h3 className="font-dmSans font-semibold text-[32px] text-[#3F3130]">
-                    Simplified Selling Experience
+                    Simplified Renting Experience
                   </h3>
                   <p className="text-[#80675E] font-dmSans">
-                    Bondi's user-friendly platform makes it easy for sellers to
-                    list their items, reach a wider audience, and contribute to
-                    a more sustainable future
+                    With Bondi, renting clothes is effortless. Find or lend
+                    unique items for special occasions, reducing waste and
+                    saving resources.
                   </p>
                 </div>
                 <div className="px-5 py-10 bg-[#CBE3D0] flex-1 md:min-w-[313px]">
                   <h3 className="font-dmSans font-semibold text-[32px] text-[#2A342A]">
-                    Discover unique, sustainable fashion
+                    Discover Unique, Sustainable Fashion
                   </h3>
                   <p className="text-[#505952] font-dmSans">
-                    Find affordable, one-of-a-kind pieces from sellers around
-                    the world, reduce waste, and contribute to a more
-                    sustainable future with every purchase.
+                    Explore affordable, one-of-a-kind pieces from around the
+                    world and contribute to a more sustainable future with every
+                    purchase.
                   </p>
                 </div>
               </div>
@@ -329,8 +335,8 @@ export default function Home() {
                       Empowering Change
                     </h5>
                     <p className="text-[#8B898B] mt-4 font-dmSans">
-                      Discover how Bondi connects buyers and sellers to promote
-                      sustainable fashion and a circular economy.
+                      Discover how Bondi connects buyers, sellers, and renters
+                      to promote sustainable fashion and a circular economy.
                     </p>
                   </div>
                   <button
@@ -356,8 +362,8 @@ export default function Home() {
                       Discover Unique Finds
                     </h5>
                     <p className="text-[#8B898B] mt-4 font-dmSans">
-                      Shop or sell unique, high-quality items while contributing
-                      to a greener future.
+                      Shop, sell, or rent unique, high-quality items while
+                      contributing to a greener future.
                     </p>
                   </div>
                   <button
