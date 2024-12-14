@@ -24,10 +24,16 @@ export default function HomeUI({
   const emailRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleOpenModal = useCallback(() => {
-    ref.current?.showModal();
-    handleTrackEvent("OPEN_MODAL", { BTN_NAME: "OPEN_MODAL" });
-  }, [ref]);
+  const handleTrackEvent = useCallback(
+    (event: string, eventParams: Record<string, any>) => {
+      if (analytics) {
+        logEvent(analytics, event, eventParams);
+      }
+
+      amplitude.track(event, eventParams);
+    },
+    []
+  );
 
   const handleSubmitForm = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
@@ -47,7 +53,6 @@ export default function HomeUI({
           { position: "bottom-right" }
         );
       } catch (error) {
-        console.log(error);
         const errorMessage =
           error instanceof Error ? error.message : "Unknown error";
         handleTrackEvent("ERROR_SUBMIT", { ERROR: errorMessage });
@@ -55,19 +60,13 @@ export default function HomeUI({
         setIsLoading(false);
       }
     },
-    [emailRef, ref]
+    [emailRef, ref, authEmail, authPassword, handleTrackEvent]
   );
 
-  const handleTrackEvent = useCallback(
-    (event: string, eventParams: Record<string, any>) => {
-      if (analytics) {
-        logEvent(analytics, event, eventParams);
-      }
-
-      amplitude.track(event, eventParams);
-    },
-    [analytics]
-  );
+  const handleOpenModal = useCallback(() => {
+    ref.current?.showModal();
+    handleTrackEvent("OPEN_MODAL", { BTN_NAME: "OPEN_MODAL" });
+  }, [ref, handleTrackEvent]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -75,13 +74,13 @@ export default function HomeUI({
         autocapture: true,
       });
     }
-  }, []);
+  }, [amplitudeApiKey]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       initializeFirebaseClient(firebaseConfig);
     }
-  }, []);
+  }, [firebaseConfig]);
 
   useEffect(() => {
     handleTrackEvent("ENTER", { PAGE_LOAD: "ENTER PAGE" });
