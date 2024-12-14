@@ -5,21 +5,22 @@ import {
   setDoc,
   doc,
   collection,
-} from "./firebase";
+} from "./client";
 
-const signIn = async () => {
+const signIn = async (authEmail: string, authPassword: string) => {
   const auth = getAuth();
   if (!auth?.currentUser) {
-    return await signInWithEmailAndPassword(
-      auth,
-      process.env.NEXT_PUBLIC_EMAIL as string,
-      process.env.NEXT_PUBLIC_PASSWORD as string
-    );
+    return await signInWithEmailAndPassword(auth, authEmail, authPassword);
   }
 };
 
-export const setEmail = async (email: string) => {
-  await signIn();
+export const setEmail = async (
+  email: string,
+  authEmail: string,
+  authPassword: string
+) => {
+  if (!db) return;
+  await signIn(authEmail, authPassword);
   const ref = doc(collection(db, "emails"));
   await setDoc(ref, { email });
 };
