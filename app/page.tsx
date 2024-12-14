@@ -1,11 +1,14 @@
 "use client";
 
-import { useRef, useCallback, FormEvent, useState } from "react";
+import { useRef, useCallback, FormEvent, useState, useEffect } from "react";
 import Image from "next/image";
+import * as amplitude from "@amplitude/analytics-browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { Wrapper } from "@/src/components";
 import { setEmail } from "@/src/firebase/services";
+import { Analytics, logEvent } from "@/src/firebase/firebase";
 
 export default function Home() {
   const ref = useRef<HTMLDialogElement>(null);
@@ -14,6 +17,7 @@ export default function Home() {
 
   const handleOpenModal = useCallback(() => {
     ref.current?.showModal();
+    handleTrackEvent("OPEN_MODAL", { BTN_NAME: "OPEN_MODAL" });
   }, [ref]);
 
   const handleSubmitForm = useCallback(
@@ -21,6 +25,7 @@ export default function Home() {
       event.preventDefault();
       setIsLoading(true);
       try {
+        handleTrackEvent("SUBMIT_EMAIL", { BTN_NAME: "SUBMIT_EMAIL" });
         const formData = new FormData(event.currentTarget);
         const email = formData.get("email") as string;
         await setEmail(email);
@@ -32,13 +37,39 @@ export default function Home() {
           "Thank you for joining Bondi! We’ll notify you as soon as the platform is ready. Stay tuned for updates!",
           { position: "bottom-right" }
         );
-      } catch {
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error";
+        handleTrackEvent("ERROR_SUBMIT", { ERROR: errorMessage });
       } finally {
         setIsLoading(false);
       }
     },
     [emailRef, ref]
   );
+
+  const handleTrackEvent = useCallback(
+    (event: string, eventParams: Record<string, any>) => {
+      if (Analytics) {
+        logEvent(Analytics, event, eventParams);
+      }
+
+      amplitude.track(event, eventParams);
+    },
+    [Analytics]
+  );
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      amplitude.init(process.env.NEXT_PUBLIC_AMPLITUDE as string, {
+        autocapture: true,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    handleTrackEvent("ENTER", { PAGE_LOAD: "ENTER PAGE" });
+  }, [handleTrackEvent]);
 
   return (
     <div>

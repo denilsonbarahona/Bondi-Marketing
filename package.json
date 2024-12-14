@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.11.9",
     "firebase": "^11.0.2",
     "next": "15.0.4",
     "react": "^19.0.0",

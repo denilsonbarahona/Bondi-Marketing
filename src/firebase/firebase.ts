@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics, isSupported, logEvent } from "firebase/analytics";
 export { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
 export { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -14,4 +15,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const db = getFirestore(app);
+
+export let Analytics: ReturnType<typeof getAnalytics> | null = null;
+
+if (typeof window !== "undefined") {
+  isSupported().then((supported) => {
+    if (supported) {
+      Analytics = getAnalytics(app);
+    }
+  });
+}
+
+export { logEvent };

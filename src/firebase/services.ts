@@ -10,11 +10,6 @@ import {
 const signIn = async () => {
   const auth = getAuth();
   if (!auth?.currentUser) {
-    console.log(
-      process.env.NEXT_PUBLIC_EMAIL,
-      process.env.NEXT_PUBLIC_PASSWORD,
-      "login"
-    );
     return await signInWithEmailAndPassword(
       auth,
       process.env.NEXT_PUBLIC_EMAIL as string,
