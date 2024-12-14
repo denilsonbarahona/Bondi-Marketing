@@ -90,7 +90,7 @@ export default function HomeUI({
     <div>
       <ToastContainer />
       <dialog ref={ref} className="bg-transparent">
-        <div className="px-8 py-4 rounded-lg bg-modal max-w-[500px]">
+        <div className="px-8 py-4 rounded-lg border border-gray-300 bg-[#e7e7e3] max-w-[500px]">
           <div className="flex justify-end mb-10">
             <button
               onClick={() => ref.current?.close()}

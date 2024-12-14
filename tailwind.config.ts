@@ -16,7 +16,6 @@ export default {
       },
       backgroundImage: {
         hero: "url('/hero.webp')",
-        modal: "url('/modal.webp')",
       },
     },
   },

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+# Indica la ubicación del sitemap.xml
+Sitemap: https://www.on-bondi.com/sitemap.xml
